@@ -11,7 +11,7 @@ import 'package:reactive_forms/reactive_forms.dart';
 final storage = FlutterSecureStorage();
 class AppService{
   var jwtToken=null;
-  String host="http://192.168.1.36:8888";
+  String host="http://192.168.43.17:8888";
 
 /**************************************** Gestion d'authentification ******************************************************/
   Future login(user) async{

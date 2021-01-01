@@ -12,7 +12,7 @@ import 'package:stomp_dart_client/stomp_frame.dart';
 
 class WebSocketApi{
   static var apiCommunication='http://192.168.43.17:8083/websocket';
-  static var apiDonnees='http://192.168.1.36:8082/websocket';
+  static var apiDonnees='http://192.168.43.17:8082/websocket';
   static var user;
   Future<StompClient> getRealTimeNotif() async{
     return await StompClient(

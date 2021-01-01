@@ -1,11 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:SoinConnect/main.dart';
-import 'package:SoinConnect/pages/navbar/bar.dart';
-import 'package:SoinConnect/pages/patient/patient-page.dart';
-import 'package:SoinConnect/services/app-service.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:stomp_dart_client/stomp.dart';
 import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';

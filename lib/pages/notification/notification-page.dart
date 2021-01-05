@@ -3,6 +3,7 @@ import 'package:SoinConnect/pages/navbar/bar.dart';
 import 'package:SoinConnect/pages/navbar/drawer.dart';
 import 'package:SoinConnect/pages/notification/notification-traitement.dart';
 import 'package:SoinConnect/pages/rendezVous/rendezVous-page.dart';
+import 'package:SoinConnect/pages/rendezVousPat/rendezVousPat-page.dart';
 import 'package:SoinConnect/services/app-service.dart';
 import 'package:SoinConnect/services/web-socket.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class NotificationPage extends StatefulWidget {
 class _NotificationPageState extends State<NotificationPage> {
   Stream<dynamic> stream=streamController.stream;
   List<dynamic> notifications;
+  var user;
   List<dynamic> notificationsStream;
   Stream<dynamic> streamAllMsg=streamControllerAllMsg.stream;
   List<dynamic> msgStream;
@@ -36,6 +38,7 @@ class _NotificationPageState extends State<NotificationPage> {
     NotificationTraitement().getNotifcation().then((value){
       setState(() {
         this.notifications=NotificationTraitement.notifications;
+        user=NotificationTraitement.user;
         filteredList=notifications;
       });
     });
@@ -61,7 +64,8 @@ class _NotificationPageState extends State<NotificationPage> {
                   padding: EdgeInsets.all(8.0),
                   width: double.infinity,
                   child: TextField(
-                    decoration: InputDecoration(hintText: 'Taper un nom d\'un patient ..'),
+                    decoration:(user["appUser"]['role']=="MEDECIN") ? InputDecoration(hintText: 'Taper un nom d\'un patient ..')
+                                                                    : InputDecoration(hintText: 'Taper un nom d\'un médecin ..'),
                     controller: _textController,
                     onChanged: (text) {
                       text = text.toLowerCase();
@@ -88,7 +92,8 @@ class _NotificationPageState extends State<NotificationPage> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>RendezVousPage()));
+                            (user["appUser"]['role']=="MEDECIN") ?Navigator.push(context, MaterialPageRoute(builder: (context)=>RendezVousPage()))
+                                                                 :Navigator.push(context, MaterialPageRoute(builder: (context)=>RendezVousPatPage()));
                           },
                           child: Card(
                             color: (filteredList[index]['readed']==null)?Colors.black12:Colors.white,
@@ -100,8 +105,8 @@ class _NotificationPageState extends State<NotificationPage> {
                                         padding: const EdgeInsets.all(5.0),
                                         child: CircleAvatar(
                                           backgroundColor: Colors.white,
-                                          backgroundImage: AssetImage(
-                                              "./images/patientNo.png"),
+                                          backgroundImage:(user["appUser"]['role']=="MEDECIN") ?AssetImage("./images/patientNo.png")
+                                                                                               :AssetImage("./images/medecin.png"),
                                         ),
                                       ),
                                   Flexible(

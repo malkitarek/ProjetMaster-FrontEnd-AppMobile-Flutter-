@@ -66,6 +66,10 @@ flutter:
     - images/homeImage1.png
     - images/homeImage2.png
     - images/homeImage3.png
+    - images/homeImgPat0.png
+    - images/homeImgPat1.png
+    - images/homeImgPat2.png
+    - images/homeImgPat3.png
     - images/patient2.png
     - images/dossierMedical.jpg
     - images/consultation.jpg
@@ -78,6 +82,8 @@ flutter:
     - images/position_ok.png
     - images/spo_ok.png
     - images/temp_ok.png
+    - images/patient3.jpg
+    - images/rendez-vous.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

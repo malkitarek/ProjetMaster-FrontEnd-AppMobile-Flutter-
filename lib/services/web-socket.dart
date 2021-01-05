@@ -54,7 +54,6 @@ class WebSocketApi{
                 destination: '/topic/allMessages',
                 headers: {'Content-Type': 'application/json; charset=utf-8'},
                 callback: (StompFrame frame) {
-                 // print('dgggd');
                   var messages = json.decode(frame.body);
                   streamControllerAllMsg.add(messages);
 

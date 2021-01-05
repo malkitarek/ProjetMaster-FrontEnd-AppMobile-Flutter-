@@ -3,13 +3,17 @@ import 'dart:convert';
 
 
 import 'package:SoinConnect/pages/device/device-page.dart';
+import 'package:SoinConnect/pages/donnee/donnee-page.dart';
 import 'package:SoinConnect/pages/home/home-page.dart';
 import 'package:SoinConnect/pages/login/login-page.dart';
+import 'package:SoinConnect/pages/medecin/medecin-page.dart';
 import 'package:SoinConnect/pages/membre/membre-page.dart';
 import 'package:SoinConnect/pages/messageMP/message-page.dart';
 import 'package:SoinConnect/pages/notification/notification-page.dart';
 import 'package:SoinConnect/pages/patient/patient-page.dart';
 import 'package:SoinConnect/pages/rendezVous/rendezVous-page.dart';
+import 'package:SoinConnect/pages/rendezVousPat/rendezVousPat-page.dart';
+import 'package:SoinConnect/pages/service/service-page.dart';
 import 'package:SoinConnect/services/app-service.dart';
 import 'package:SoinConnect/services/web-socket.dart';
 import 'package:SoinConnect/utilities/constants.dart';
@@ -64,6 +68,10 @@ class _MyAppState extends State<MyApp> {
         '/notifications' : (BuildContext context) => NotificationPage(),
         '/messages' : (BuildContext context) => MessagePage(),
         '/devices' : (BuildContext context) => DevicePage(),
+        '/donnees' : (BuildContext context) => DonneePage(),
+        '/rendezVousP' : (BuildContext context) => RendezVousPatPage(),
+        '/services' : (BuildContext context) => ServicePage(),
+        '/medecins' : (BuildContext context) => MedecinPage(),
         /*'/screen4' : (BuildContext context) => new Screen4()*/
       },
     );

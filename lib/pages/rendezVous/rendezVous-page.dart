@@ -5,14 +5,12 @@ import 'package:SoinConnect/pages/navbar/bar.dart';
 import 'package:SoinConnect/pages/navbar/drawer.dart';
 import 'package:SoinConnect/pages/rendezVous/rendezVous-traitement.dart';
 import 'package:SoinConnect/services/app-service.dart';
-import 'package:SoinConnect/services/web-socket.dart';
+
 import 'package:SoinConnect/utilities/constants.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:stomp_dart_client/stomp.dart';
-import 'package:stomp_dart_client/stomp_config.dart';
-import 'package:stomp_dart_client/stomp_frame.dart';
+
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:reactive_forms/reactive_forms.dart';

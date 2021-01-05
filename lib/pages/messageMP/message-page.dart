@@ -78,7 +78,7 @@ class _MessagePageState extends State<MessagePage> {
                 Container(
                   padding: EdgeInsets.all(8.0),
                   width: widthScree(context)*0.65,
-                  child: TextField(
+                  child:(user["appUser"]["role"]=='MEDECIN')? TextField(
                     decoration: InputDecoration(hintText: 'Taper un nom d\'un patient ..'),
                     controller: _textController,
                     onChanged: (text) {
@@ -86,6 +86,18 @@ class _MessagePageState extends State<MessagePage> {
                       setState(() {
                         filteredList = membres
                             .where((element) => element["patient"]["nom"].toLowerCase().contains(text))
+                            .toList();
+                      });
+                    },
+                  )
+                  :TextField(
+                    decoration: InputDecoration(hintText: 'Taper un nom d\'un medecin ..'),
+                    controller: _textController,
+                    onChanged: (text) {
+                      text = text.toLowerCase();
+                      setState(() {
+                        filteredList = membres
+                            .where((element) => element["medecin"]["nom"].toLowerCase().contains(text))
                             .toList();
                       });
                     },
@@ -106,7 +118,8 @@ class _MessagePageState extends State<MessagePage> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () async{
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailMsgPage(filteredList[index]['patient'],user)));
+                            (user["appUser"]["role"]=='MEDECIN')?Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailMsgPage(filteredList[index]['patient'],user)))
+                                                                 :Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailMsgPage(filteredList[index]['medecin'],user)));
                           },
                           child: Card(
                             color: Colors.white,
@@ -123,8 +136,8 @@ class _MessagePageState extends State<MessagePage> {
                                                   ,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),):null,
                                         child: CircleAvatar(
                                           backgroundColor: Colors.white,
-                                          backgroundImage: AssetImage(
-                                              "./images/patientNo.png"),
+                                          backgroundImage: (user["appUser"]["role"]=='MEDECIN')?AssetImage("./images/patientNo.png")
+                                                                                               :AssetImage("./images/medecin.png"),
                                         ),
                                       ),
                                       Flexible(
@@ -135,11 +148,16 @@ class _MessagePageState extends State<MessagePage> {
                                               crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                               children: [
-                                                Text("${filteredList[index]["patient"]["nom"]}, ${filteredList[index]['patient']["prenom"]}",
+                                                (user["appUser"]["role"]=='MEDECIN')?Text("${filteredList[index]["patient"]["nom"]}, ${filteredList[index]['patient']["prenom"]}",
                                                     style: TextStyle(
                                                       fontSize: 18,
                                                       color: Colors.black,
-                                                    )),
+                                                    ))
+                                                                                 :Text("${filteredList[index]["medecin"]["nom"]}, ${filteredList[index]['medecin']["prenom"]}",
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.black,
+                                              )),
 
                                                 Text(
                                                     "${filteredList[index]['contenu']}",

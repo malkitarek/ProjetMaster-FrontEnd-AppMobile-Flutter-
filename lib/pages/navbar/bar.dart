@@ -35,7 +35,7 @@ class BarWidget  {
 
    });
    await AppService().getAllMsgNoReaded(user['id'], user['appUser']['role']).then((response){
-     if(response.statusCode == 200 && response.statusCode == 201) msgNoReaded=json.decode(response.body);
+     msgNoReaded=json.decode(response.body);
    });
 
 

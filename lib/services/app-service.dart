@@ -255,11 +255,60 @@ Future getConsultations(idPat,idMed) async{
     );
   }
 
-/*********************************** Gestion Communication ***************************************************/
+  Future getServices() async{
+    var jwt=await loadToken();
+    return  await http.get(
+      "$host/suivi-patient-service/services",
+      headers:{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization':jwt,
+      },
+
+    );
+  }
+
+  Future getMedecin(id) async{
+    var jwt=await loadToken();
+    return  await http.get(
+      "$host/suivi-patient-service/medecins/$id",
+      headers:{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization':jwt,
+      },
+
+    );
+  }
+
+
+  /*********************************** Gestion Communication ***************************************************/
   Future getRendezVous(idMed) async{
     var jwt=await loadToken();
     return  await http.get(
       "$host/communication-service/rendezVous/$idMed",
+      headers:{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization':jwt,
+      },
+
+    );
+  }
+
+  Future getRendezVousP(idPat) async{
+    var jwt=await loadToken();
+    return  await http.get(
+      "$host/communication-service/rendezVousFlutter/$idPat",
+      headers:{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization':jwt,
+      },
+
+    );
+  }
+
+  Future validerRendez(idRendez) async{
+    var jwt=await loadToken();
+    return  await http.get(
+      "$host/communication-service/validerRendez/$idRendez",
       headers:{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization':jwt,
